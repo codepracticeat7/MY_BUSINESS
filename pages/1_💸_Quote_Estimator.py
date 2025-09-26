@@ -12,7 +12,7 @@ def load_items():
 
 items_df = load_items()
 
-st.title("💸 Moving Quote Estimator and submit a Quote ")
+st.title("💸 Approximate Quote Estimator and submit a Quote For Moving ")
 
 # --- Customer details ---
 st.subheader("👤 Customer Information")
