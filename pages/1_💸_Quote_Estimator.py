@@ -21,6 +21,7 @@ with st.form("quote_form"):
     email = st.text_input("Email")
     phone = st.text_input("Phone Number")
     move_date = st.date_input("Preferred Moving Date")
+    distance_in_miles=st.number_input("enter distance in miles")
     Additional_Notes = st.text_area("Additional Notes")
 
     st.subheader("📦 Select Items for Move")
@@ -46,8 +47,15 @@ with st.form("quote_form"):
                 total_volume += qty * row["Volume"]
 
     # --- Pricing logic ---
-    price_per_cuft = 2  # Example rate: £2 per cubic foot
-    total_price = total_volume * price_per_cuft
+    price_short_distance= 1
+    price_medium_distance= 1.5
+    price_per_cuft = 2  # Example rate: £2 per cubic foot for long travel move
+    if distance_in_miles <80:
+        total_price = total_volume * price_short_distance
+    elif distance_in_miles<150:
+        total_price = total_volume * price_medium_distance
+    else:
+        total_price = total_volume * price_per_cuft
     if st.form_submit_button("Quote Estimate"):
         st.markdown("### 📊 Quote Summary")
         for item, qty, vol in selected_items:
